@@ -5,7 +5,7 @@ using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Controllers
 {
-    [Route("[controller]", Name="Categorias")]
+    [Route("[controller]")]
     [ApiController]
     public class CategoriasController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace CatalagoAPI.Controllers
             return categoria;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name="ObterCategoria")]
         public ActionResult<Categoria> Get(int id)
         {
             var categoria = _context.Categorias.FirstOrDefault(c => c.CategoriaId == id);
@@ -40,6 +40,21 @@ namespace CatalagoAPI.Controllers
             }
 
             return categoria;
+        }
+
+        [HttpPost]
+        public ActionResult Post(Categoria categoria)
+        {
+            if(categoria is null)
+            {
+                return BadRequest();
+            }
+
+            _context.Categorias.Add(categoria);
+            _context.SaveChanges();
+
+            return new CreatedAtRouteResult("ObterCategoria", 
+                new { id = categoria.CategoriaId }, categoria);
         }
 
     }
