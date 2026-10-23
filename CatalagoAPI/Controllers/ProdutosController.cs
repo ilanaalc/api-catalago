@@ -5,7 +5,7 @@ using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]", Name = "Produtos")]
     [ApiController]
     public class ProdutosController : ControllerBase
     {
@@ -58,7 +58,7 @@ namespace CatalagoAPI.Controllers
 
         }
 
-        [HttpPut("{id: int}")]
+        [HttpPut("{id:int}")]
         public ActionResult Put(int id, Produto produto)
         {
             //Verificar se o id que estou informando é diferente do produtoId do body do request
