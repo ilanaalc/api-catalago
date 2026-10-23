@@ -1,5 +1,6 @@
 ﻿using CatalagoAPI.Data.Context;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Controllers
@@ -54,6 +55,24 @@ namespace CatalagoAPI.Controllers
             //nome da rota + o id que foi incluido + objeto
             return new CreatedAtRouteResult("ObterProduto", 
                 new { id = produto.ProdutoId }, produto);
+
+        }
+
+        [HttpPut("{id: int}")]
+        public ActionResult Put(int id, Produto produto)
+        {
+            //Verificar se o id que estou informando é diferente do produtoId do body do request
+            if(id != produto.ProdutoId)
+            {
+                return BadRequest();
+            }
+
+            //O contexto precisa ser informado que a entidade produto está em um estado modificado
+            _context.Entry(produto).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            //Retorno
+            return Ok(produto);
 
         }
     }
