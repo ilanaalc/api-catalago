@@ -75,5 +75,25 @@ namespace CatalagoAPI.Controllers
             return Ok(produto);
 
         }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id)
+        {
+            //Busco o produto no contexto
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+
+            //Verifico se ele é null
+            if(produto is null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+
+            //Se existe (não é null) remove ele no contexto e persisto os dados
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+
+            //Retorno ok
+            return Ok();
+        }
     }
 }
