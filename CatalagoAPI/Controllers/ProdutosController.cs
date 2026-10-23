@@ -5,7 +5,7 @@ using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Controllers
 {
-    [Route("[controller]", Name = "Produtos")]
+    [Route("[controller]", Name="Produtos")]
     [ApiController]
     public class ProdutosController : ControllerBase
     {
