@@ -5,7 +5,7 @@ using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Controllers
 {
-    [Route("[controller]", Name="Produtos")]
+    [Route("[controller]")]
     [ApiController]
     public class ProdutosController : ControllerBase
     {
@@ -46,7 +46,9 @@ namespace CatalagoAPI.Controllers
         public ActionResult Post(Produto produto)
         {
             if (produto is null)
+            {
                 return BadRequest();
+            }
 
             _context.Produtos.Add(produto); //O método add vai incluir o produto no contexto
             _context.SaveChanges(); //Persiste os dados na tabela do banco de dados
