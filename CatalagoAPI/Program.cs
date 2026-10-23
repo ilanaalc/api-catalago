@@ -11,7 +11,7 @@ builder.Services.AddOpenApi();
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("A connection string 'DefaultConnectionString' não foi encontrada");
 
-builder.Services.AddDbContext<CatalagoApiDbContext>(options => 
+builder.Services.AddDbContext<AplicationDbContext>(options => 
                 options.UseMySql(mySqlConnection, 
                 ServerVersion.AutoDetect(mySqlConnection)));
 
