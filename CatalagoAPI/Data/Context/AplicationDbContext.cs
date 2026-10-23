@@ -3,9 +3,9 @@ using CatalagoAPI.Models;
 
 namespace CatalagoAPI.Data.Context
 {
-    public class CatalagoApiDbContext : DbContext
+    public class AplicationDbContext : DbContext
     {
-        public CatalagoApiDbContext(DbContextOptions<CatalagoApiDbContext> options) : base(options)
+        public AplicationDbContext(DbContextOptions<AplicationDbContext> options) : base(options)
         {
 
         }
