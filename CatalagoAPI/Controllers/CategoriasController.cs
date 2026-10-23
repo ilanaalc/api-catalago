@@ -43,11 +43,11 @@ namespace CatalagoAPI.Controllers
             return categoria;
         }
 
-        //[HttpGet("produtos")]
-        //public ActionResult<IEnumerable<Categoria>> GetProdutoCategorias()
-        //{
-        //    return _context.Categorias.Include(p => p.Produtos).ToList();
-        //}
+        [HttpGet("produtos")]
+        public ActionResult<IEnumerable<Categoria>> GetProdutoCategorias()
+        {
+            return _context.Categorias.Include(p => p.Produtos).ToList();
+        }
 
         [HttpPost]
         public ActionResult Post(Categoria categoria)
