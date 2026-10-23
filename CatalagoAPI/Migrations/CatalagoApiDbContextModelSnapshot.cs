@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CatalagoAPI.Migrations
 {
-    [DbContext(typeof(CatalagoApiDbContext))]
+    [DbContext(typeof(AplicationDbContext))]
     partial class CatalagoApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CatalagoAPI.Migrations
 {
-    [DbContext(typeof(CatalagoApiDbContext))]
+    [DbContext(typeof(AplicationDbContext))]
     [Migration("20261022160048_MigrationInitial")]
     partial class MigrationInitial
     {
