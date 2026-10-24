@@ -49,6 +49,19 @@ namespace CatalagoAPI.Controllers
             return categoria;
         }
 
+        [HttpGet("produtos/{id:int}")]
+        public ActionResult<Categoria> GetProdutosCategoriaId(int id)
+        {
+            var categoria = _context.Categorias.Include(c => c.Produtos).FirstOrDefault(c => c.CategoriaId == id);
+
+            if (categoria == null)
+            {
+                return NotFound("A categoria informada não foi encontrada");
+            }
+
+            return categoria;
+        }
+
         [HttpGet("produtos")]
         public ActionResult<IEnumerable<Categoria>> GetProdutoCategorias()
         {
