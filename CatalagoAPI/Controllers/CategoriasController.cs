@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalagoAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CategoriasController : ControllerBase
     {
@@ -21,13 +21,19 @@ namespace CatalagoAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
-            var categoria = _context.Categorias.ToList();
-            if (categoria == null)
+            try
             {
-                return NotFound("As categorias não foram encontradas");
+                var categoria = _context.Categorias.ToList();
+                if (categoria == null)
+                {
+                    return NotFound("As categorias não foram encontradas");
+                }
+                return categoria;
             }
-
-            return categoria;
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um problema ao tratar a sua solicitação.");
+            }
         }
 
         [HttpGet("{id:int}", Name = "ObterCategoria")]
